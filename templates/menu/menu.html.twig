@@ -1,0 +1,45 @@
+<header class="cs-header navbar navbar-expand-lg navbar-dark navbar-floating navbar-sticky py-4" style="height: 5em">
+    <div class="container px-0 px-xl-3 respons-nav">
+        <button id="side-navbar-btn" class="navbar-toggler ml-n2 mr-2" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% block logo %}
+            {% if event is defined %}
+                <a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="{{ path('home') }}">
+                    <img class="navbar-floating-logo d-none d-lg-block" src="{{ asset('assets/img/logo-light.svg') }}" alt="TechMe prestataire technique audiovisuel à Lille" style="height: 50px"/>
+                    <img class="navbar-stuck-logo" src="{{ asset('assets/img/logo-light.svg') }}" style="height: 50px" alt="erooms plateforme organisation événement en ligne digital hybride"/>
+                    <img class="d-lg-none " src="{{ asset('assets/img/logo-light.svg') }}" style="height: 50px; left: 50%; position: relative" alt="erooms plateforme organisation événement en ligne digital hybride"/>
+                </a>
+            {% else %}
+                <a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="{{ path('home') }}">
+                    <img class="navbar-floating-logo d-none d-lg-block" src="{{ asset('assets/img/logo-light.svg') }}" alt="erooms plateforme organisation événement en ligne digital hybride" style="height: 50px"/>
+                    <img class="navbar-stuck-logo" src="{{ asset('assets/img/logo-dark.svg') }}" style="height: 50px" alt="erooms plateforme organisation événement en ligne digital hybride"/>
+                    <img class="d-lg-none " src="{{ asset('assets/img/logo-dark.svg') }}" style="height: 50px; left: 50%; position: relative" alt="erooms plateforme organisation événement en ligne digital hybride"/>
+                </a>
+            {% endif %}
+        {% endblock %}
+        <div class="display-connexion d-flex align-items-center order-lg-3 ml-lg-auto navbar-content">
+            {% block navbar_content %}{% endblock %}
+        </div>
+
+        <div class="order-lg-2 side-navbar navbar-light" id="menu">
+            <div class="p-5 row">
+                <div class="d-flex col-12 header-menu">
+                    <h5 class="mb-0 col-8">Menu</h5>
+                    <button type="button" class="btn close-side-navbar btn-outline-dark">close</button>
+                </div>
+                <div>
+                    <!-- Menu-->
+                    {% block navbar_content_slide %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-offcanvas-collapse order-lg-2 navbar-no-slide">
+            <div class="cs-offcanvas-body">
+                <!-- Menu-->
+                {% block navbar_content_menu %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</header>
