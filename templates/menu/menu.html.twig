@@ -3,42 +3,26 @@
         <button id="side-navbar-btn" class="navbar-toggler ml-n2 mr-2" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {% block logo %}
-            {% if event is defined %}
-                <a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="{{ path('home') }}">
-                    <img class="navbar-floating-logo d-none d-lg-block" src="{{ asset('assets/img/logo-light.svg') }}" alt="TechMe prestataire technique audiovisuel à Lille" style="height: 50px"/>
-                    <img class="navbar-stuck-logo" src="{{ asset('assets/img/logo-light.svg') }}" style="height: 50px" alt="erooms plateforme organisation événement en ligne digital hybride"/>
-                    <img class="d-lg-none " src="{{ asset('assets/img/logo-light.svg') }}" style="height: 50px; left: 50%; position: relative" alt="erooms plateforme organisation événement en ligne digital hybride"/>
-                </a>
+
+        <div class="display-connexion d-flex align-items-center order-lg-3 ml-lg-auto navbar-content">
+            {% if app.user %}
+                    <a class="btn btn-primary m-2" href="{{ path('app_logout') }}" rel="noopener">
+                        <i class="fe-user-check font-size-lg"></i> Déconnexion
+                    </a>
             {% else %}
-                <a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="{{ path('home') }}">
-                    <img class="navbar-floating-logo d-none d-lg-block" src="{{ asset('assets/img/logo-light.svg') }}" alt="erooms plateforme organisation événement en ligne digital hybride" style="height: 50px"/>
-                    <img class="navbar-stuck-logo" src="{{ asset('assets/img/logo-dark.svg') }}" style="height: 50px" alt="erooms plateforme organisation événement en ligne digital hybride"/>
-                    <img class="d-lg-none " src="{{ asset('assets/img/logo-dark.svg') }}" style="height: 50px; left: 50%; position: relative" alt="erooms plateforme organisation événement en ligne digital hybride"/>
+                <a class="btn btn-primary m-2" href="{{ path('app_login') }}" rel="noopener">
+                    <i class="fe-user font-size-lg"></i> Connexion
                 </a>
             {% endif %}
-        {% endblock %}
-        <div class="display-connexion d-flex align-items-center order-lg-3 ml-lg-auto navbar-content">
-            {% block navbar_content %}{% endblock %}
-        </div>
-
-        <div class="order-lg-2 side-navbar navbar-light" id="menu">
-            <div class="p-5 row">
-                <div class="d-flex col-12 header-menu">
-                    <h5 class="mb-0 col-8">Menu</h5>
-                    <button type="button" class="btn close-side-navbar btn-outline-dark">close</button>
-                </div>
-                <div>
-                    <!-- Menu-->
-                    {% block navbar_content_slide %}{% endblock %}
-                </div>
-            </div>
         </div>
 
         <div class="cs-offcanvas-collapse order-lg-2 navbar-no-slide">
             <div class="cs-offcanvas-body">
-                <!-- Menu-->
-                {% block navbar_content_menu %}{% endblock %}
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Post</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Contact</a></li>
+                </ul>
             </div>
         </div>
     </div>
