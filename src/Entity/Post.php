@@ -46,9 +46,14 @@ class Post
     private $auteur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="idPost")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="idPost", cascade={"persist"})
      */
     private $commentaires;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateUpdate;
 
     public function __construct()
     {
@@ -146,6 +151,18 @@ class Post
                 $commentaire->setIdPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateUpdate(): ?\DateTimeInterface
+    {
+        return $this->dateUpdate;
+    }
+
+    public function setDateUpdate(\DateTimeInterface $dateUpdate): self
+    {
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
