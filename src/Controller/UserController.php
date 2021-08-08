@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/", name="user_index", methods={"GET"})
+     *  @IsGranted("ROLE_ADMIN")
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -53,6 +55,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_USER")
      */
     public function show(User $user): Response
     {
@@ -63,6 +66,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, User $user): Response
     {
@@ -83,6 +87,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, User $user): Response
     {
@@ -93,5 +98,23 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/add/role/{id}", name="user_add_role")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function addRole(User $user): Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($user);
+
+        if(!empty($user->getRoles())) {
+            $em = $this->getDoctrine()->getManager();
+            $roles = $user->getRoles();
+            array_push($roles,'ROLE_ADMIN');
+            $user->setRoles($roles);
+            $em->flush();
+        }
+        return $this->redirectToRoute('commentaire_index');
     }
 }

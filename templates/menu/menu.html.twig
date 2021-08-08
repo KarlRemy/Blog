@@ -19,9 +19,11 @@
         <div class="cs-offcanvas-collapse order-lg-2 navbar-no-slide">
             <div class="cs-offcanvas-body">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Post</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-bold" href="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-bold menu" href="{{ path('home') }}">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-bold menu" href="{{ path('post_index') }}">Post</a></li>
+                    {% block menuEncre %}
+                        <li class="nav-item"><a class="nav-link nav-link-bold menu" href="#contact">Contact</a></li>
+                    {% endblock %}
                 </ul>
             </div>
         </div>

@@ -40,7 +40,17 @@ class Commentaire
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $validé;
+    private $valide;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateUpdate;
 
     public function getId(): ?int
     {
@@ -95,14 +105,38 @@ class Commentaire
         return $this;
     }
 
-    public function getValidé(): ?bool
+    public function getValide(): ?bool
     {
-        return $this->validé;
+        return $this->valide;
     }
 
-    public function setValidé(?bool $validé): self
+    public function setValide(?bool $valide): self
     {
-        $this->validé = $validé;
+        $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    public function getDateUpdate(): ?\DateTimeInterface
+    {
+        return $this->dateUpdate;
+    }
+
+    public function setDateUpdate(\DateTimeInterface $dateUpdate): self
+    {
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
