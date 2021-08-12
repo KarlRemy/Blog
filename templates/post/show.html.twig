@@ -3,65 +3,41 @@
 {% block title %}Post{% endblock %}
 
 {% block body %}
-    <h1>Post</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ post.titre }}</td>
-            </tr>
-            <tr>
-                <th>DateCreation</th>
-                <td>{{ post.dateCreation ? post.dateCreation|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Chapo</th>
-                <td>{{ post.chapo }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ post.contenu }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>{{ post.titre }}</h1>
+    <div class="mt-5">
+        <p>{{ post.dateCreation ? post.dateCreation|date('Y-m-d') : '' }}</p>
+        <p>{{ post.chapo }}</p>
+        <p>{{ post.contenu }}</p>
+    </div>
 
     {% if is_granted('ROLE_ADMIN') and post.auteur.id is same as(app.user.id) %}
-        <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+        <a class="mt-5 mb-5 btn btn-outline-primary" href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
     {% endif %}
 
-    <h1>Commentaire</h1>
+    <h1 class="mt-5 mb-5">Commentaire</h1>
     {% if is_granted('ROLE_USER') %}
-        <a href="{{ path('commentaire_new', {'idPost': post.id}) }}">Nouveau commentaire</a>
+        <a class="mb-5 btn btn-outline-secondary" href="{{ path('commentaire_new', {'idPost': post.id}) }}">Nouveau commentaire</a>
     {% endif %}
-    <table class="table">
-        <tbody>
-    {% for commentaire in commentaires %}
-        {% if commentaire.idUser is same as(app.user) or commentaire.valide is same as(true) %}
-            <tr>
-                <th>Id</th>
-                <td>{{ commentaire.id }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ commentaire.contenu }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ commentaire.titre }}</td>
-            </tr>
-            {% if commentaire.idUser is same as(app.user) %}
-                <tr>
-                    <th>Valide</th>
-                    <td>{{ commentaire.valide ? 'Yes' : 'No' }}</td>
-                </tr>
+
+    <div class="row d-flex">
+        {% for commentaire in commentaires %}
+            {% if commentaire.idUser is same as(app.user) or commentaire.valide is same as(true) %}
+                <div class="card col-6" style="min-width: 25em">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ commentaire.titre }}</h5>
+
+                        <p>{{ commentaire.idUser.username }}</p>
+                        <p>{{ commentaire.contenu }}</p>
+
+                        {% if commentaire.idUser is same as(app.user) %}
+                            <tr>
+                                <th>Valide</th>
+                                <td>{{ commentaire.valide ? 'Yes' : 'No' }}</td>
+                            </tr>
+                        {% endif %}
+                    </div>
+                </div>
             {% endif %}
-        {% endif %}
-    {% endfor %}
-        </tbody>
-    </table>
+        {% endfor %}
+    </div>
 {% endblock %}

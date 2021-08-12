@@ -18,13 +18,48 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
         {% include 'menu/menu.html.twig' %}
-        <div id="conteneur">
+        <div id="conteneur" >
             {% block body %}{% endblock %}
         </div>
         {% block footer %}
 
+            <footer class="footer">
+                <div class="contain">
+                    <div class="col">
+                        <h1>Administration</h1>
+                        <ul>
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                                    <li>
+                                        <a href="{{ path('admin_index') }}">Admin</a>
+                                    </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h1>Contact</h1>
+                        <ul>
+                            <li>Tel : 0750260664</li>
+                            <li>Mail : karl.remy@hotmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+
+                    <div class="col social">
+                        <h1>Social</h1>
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/karl-remy/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="32" style="width: 32px;"></a></li>
+                            <li><a href="https://github.com/KarlRemy?tab=repositories" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" width="32" style="width: 32px;"></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </footer>
         {% endblock %}
     </body>
 </html>
