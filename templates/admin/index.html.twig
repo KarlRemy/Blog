@@ -2,7 +2,9 @@
 {% block title %}admin{% endblock %}
 
 {% block body %}
-    <a href="{{ path('post_index') }}">post</a>
-    <a href="{{ path('commentaire_index') }}">commentaire</a>
-    <a href="{{ path('user_index') }}">user</a>
+    <div class="row col-12">
+        <a class="mt-5 mb-5 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4 text-center btn btn-primary" href="{{ path('post_index') }}">post</a>
+        <a class="mb-5 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4 text-center btn btn-primary" href="{{ path('commentaire_index') }}">commentaire</a>
+        <a class="mb-5 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4 text-center btn btn-primary" href="{{ path('user_index') }}">user</a>
+    </div>
 {% endblock %}

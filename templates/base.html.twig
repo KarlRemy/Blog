@@ -7,6 +7,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <meta name="author" content="Karl_Remy">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
         <title>{% block title %}Blog{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -20,10 +21,25 @@
     </head>
 
     <body>
-        {% include 'menu/menu.html.twig' %}
-        <div id="conteneur" >
-            {% block body %}{% endblock %}
+
+    {% include 'menu/menu.html.twig' %}
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message | raw}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+
+            {% endfor %}
+        {% endfor %}
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                {% block body %}{% endblock %}
+            </div>
         </div>
+
         {% block footer %}
 
             <footer class="footer">

@@ -9,27 +9,27 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.id | raw}}</td>
             </tr>
             <tr>
                 <th>Contenu</th>
-                <td>{{ commentaire.contenu }}</td>
+                <td>{{ commentaire.contenu | raw}}</td>
             </tr>
             <tr>
                 <th>Titre</th>
-                <td>{{ commentaire.titre }}</td>
+                <td>{{ commentaire.titre | raw}}</td>
             </tr>
             <tr>
                 <th>Valide</th>
-                <td>{{ commentaire.valide ? 'Yes' : 'No' }}</td>
+                <td>{{ commentaire.valide ? 'Yes' : 'No'| raw }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('commentaire_index') }}">back to list</a>
+    <a class="col-12 text-center mt-5" href="{{ path('commentaire_index') }}">back to list</a>
 
     {% if commentaire.idUser.id is same as(app.user.id) %}
-        <a href="{{ path('commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+        <a class="col-12 text-center mt-5" href="{{ path('commentaire_edit', {'id': commentaire.id| raw}) }}">edit</a>
         {{ include('commentaire/_delete_form.html.twig') }}
     {% endif %}
 

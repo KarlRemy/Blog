@@ -9,14 +9,14 @@
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <h1 class="h3 mb-3 font-weight-normal mt-5">Please sign in</h1>
 
-            <div class="form-label-group form-input">
-                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="UserName" autocomplete="username" required autofocus>
+            <div class="col-6 form-label-group form-input mb-2">
+                <input type="text" value="{{ last_username | raw}}" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="UserName" autocomplete="username" required autofocus>
             </div>
 
-            <div class="form-label-group form-input">
-                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="password" autocomplete="current-password" required>
+            <div class="col-6 form-label-group form-input">
+                <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="password" autocomplete="current-password" required>
             </div>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -31,10 +31,10 @@
                 </div>
             #}
 
-            <button class="btn btn-primary p-3 m-2" type="submit">
+            <button class="btn btn-primary p-3 m-2 mt-5 mb-5" type="submit">
                 connexion
             </button>
-            <a class="btn btn-primary p-3 m-2" href="{{ path('user_new') }}">
+            <a class="btn btn-primary p-3 m-2 mt-5 mb-5" href="{{ path('user_new') }}">
                 inscription
             </a>
         </form>

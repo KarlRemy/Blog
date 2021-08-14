@@ -6,6 +6,15 @@ body {
     background-color: #efefef;
     margin: 0;
     padding: 0;
+    font-size: 22px;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 28px;
+    }
 }
 
 #conteneur {
@@ -18,7 +27,8 @@ body {
 }
 
 .form-input {
-    min-width: 500px;
+    width: 100%;
+    min-width: 350px;
 }
 
 .footer {
@@ -120,4 +130,26 @@ body {
     .footer .col {
         width: 100%;
     }
+}
+
+.flash-success {
+    padding: 20px;
+    background-color: #09cf24;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
 }

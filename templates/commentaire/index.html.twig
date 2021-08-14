@@ -18,10 +18,10 @@
         <tbody>
         {% for commentaire in commentaires %}
             <tr>
-                <td>{{ commentaire.id }}</td>
-                <td>{{ commentaire.contenu }}</td>
-                <td>{{ commentaire.titre }}</td>
-                <td>{{ commentaire.valide ? 'Yes' : 'No' }}</td>
+                <td>{{ commentaire.id | raw}}</td>
+                <td>{{ commentaire.contenu | raw}}</td>
+                <td>{{ commentaire.titre | raw}}</td>
+                <td>{{ commentaire.valide ? 'Yes' : 'No' | raw}}</td>
                 <td>
                     <a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">show</a>
                     {% if commentaire.idUser.id is same as(app.user.id) %}

@@ -3,19 +3,26 @@
 {% block title %}Post index{% endblock %}
 
 {% block body %}
-    <h1 class="mb-5">Post index</h1>
-    <div class="row d-flex align-items-center">
+    <h1 class="mt-5 mb-5 col-12 text-center">Post index</h1>
+
+    <div class="row col-12 mb-5">
     {% for post in posts %}
-        <div class="card col-6">
-            <div class="card-body">
-                <h5 class="card-title">{{ post.titre }}</h5>
-                <p>{{ post.dateUpdate ? post.dateUpdate|date('Y-m-d') : '' }}</p>
-                <p class="card-text">{{ post.chapo }}</p>
-                <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">show</a>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-primary">edit</a>
-                {% endif %}
+        <div class="col-lg-6 col-md-12  w-100 mb-2">
+            <div class="card mb-3 w-100 h-100">
+
+                <div class="card-header">{{ post.titre | raw}}</div>
+                <div class="card-body">
+                    <div class="card-title">{{ post.chapo | raw}}</div>
+                    <div class="card-text">{{ post.dateUpdate ? post.dateUpdate|date('Y-m-d') : '' | raw}}</div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-primary">edit</a>
+                    {% endif %}
+                </div>
             </div>
+
         </div>
     {% endfor %}
     </div>

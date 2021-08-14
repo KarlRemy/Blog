@@ -1,18 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="col navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ path('home') }}">Blog</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link nav-link-bold" href="{{ path('post_index') }}" style="color: black">Post</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('post_index') }}" style="color: black">Post</a></li>
         </ul>
 
         <div class="display-connexion d-flex align-items-center order-lg-3 ml-lg-auto navbar-content">
             {% if app.user %}
                 <a class="btn btn-primary m-2" href="{{ path('app_logout') }}" rel="noopener">
-                    <i class="fe-user-check font-size-lg"></i> Déconnexion
+                    <i class="fe-user-check font-size-lg"></i> {{ app.user.username | raw}}
                 </a>
             {% else %}
                 <a class="btn btn-primary m-2" href="{{ path('app_login') }}" rel="noopener">
