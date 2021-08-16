@@ -10,10 +10,9 @@
         <div class="col-lg-6 col-md-12  w-100 mb-2">
             <div class="card mb-3 w-100 h-100">
 
-                <div class="card-header">{{ post.titre | raw}}</div>
+                <div class="card-header">{{ post.titre | raw}} <div class="card-text" style="font-size: small">dernière modification : {{ post.dateUpdate ? post.dateUpdate|date('Y-m-d') : '' | raw}}</div></div>
                 <div class="card-body">
                     <div class="card-title">{{ post.chapo | raw}}</div>
-                    <div class="card-text">{{ post.dateUpdate ? post.dateUpdate|date('Y-m-d') : '' | raw}}</div>
                 </div>
                 <div class="card-footer">
                     <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">show</a>

@@ -26,7 +26,7 @@ class PostType extends AbstractType
         $builder
             ->add('titre')
             ->add('chapo')
-            ->add('contenu',TextareaType::class, ['purify_html' => true, 'purify_html_profile' => 'sneak_peak'])
+            ->add('contenu',TextareaType::class)
             ->addEventListener(FormEvents::PRE_SET_DATA,
                 [$this, 'onPreSetData'])
         ;

@@ -19,11 +19,13 @@ class Commentaire
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $idUser;
 
     /**
      * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $idPost;
 

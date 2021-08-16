@@ -3,11 +3,11 @@
 {% block title %}Post{% endblock %}
 
 {% block body %}
-    <h1 class="col-12 text-center mt-5">{{ post.titre | raw}}</h1>
-    <div class="mt-5 col-12 text-center">
-        <p>{{ post.dateCreation ? post.dateCreation|date('Y-m-d') : '' | raw}}</p>
-        <p>{{ post.chapo | raw}}</p>
-        <p>{{ post.contenu | raw}}</p>
+    <h1 class="col-12 text-center mt-5" style="font-size: xxx-large;font-weight: bold">{{ post.titre | raw}}</h1>
+    <div class="col-12 text-center">
+        <p style="font-size: small">dernière date de modification : {{ post.dateCreation ? post.dateCreation|date('Y-m-d') : '' | raw}}</p>
+        <h2 class="mt-5">{{ post.chapo | raw}}</h2>
+        <p class="mt-5">{{ post.contenu | raw}}</p>
     </div>
 
     {% if is_granted('ROLE_ADMIN') and post.auteur.id is same as(app.user.id) %}
@@ -23,7 +23,7 @@
 
     <div class="row col-12 mb-4">
         {% for commentaire in commentaires %}
-            {% if commentaire.valide is same as(true) %}
+            {% if commentaire.valide is same as(true) or commentaire.idUser.id is same as(app.user.id) %}
                 <div class="col-lg-6 col-sm-12 w-100 mb-4">
                     <div class="card w-100">
 
@@ -40,6 +40,9 @@
                         </div>
                         <div class="card-footer" style="font-size: small">
                             {{ commentaire.idUser.username | raw}}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a style="margin-left: 10px" href="{{ path('commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+                            {% endif %}
                         </div>
 
                     </div>
