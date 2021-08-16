@@ -8,7 +8,6 @@
         - username: le nom d'utilisateur
         - password : le mot de  passe
         - database = nom de la base de données
-    ---
 3. Installer les dépendances de PHP : `composer install`
 4. Installer les dépendances du client : `npm install && npm run dev`
 5. Lancer les migrations : `php bin/console doctrine:migrations:migrate`
